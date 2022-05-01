@@ -32,6 +32,7 @@ dependencies {
             "com.codeborne:selenide:6.3.5",
             "org.slf4j:slf4j-simple:1.7.36",
             "com.github.javafaker:javafaker:1.0.2",
+            "org.aeonbits.owner:owner:1.0.12",
             "io.qameta.allure:allure-selenide:$allureVersion"
     )
 }
@@ -51,5 +52,17 @@ tasks.withType(Test) {
             events "started", "skipped", "failed", "standard_error", "standard_out"
             exceptionFormat "short"
         }
+    }
+}
+
+task systemProperties(type: Test) {
+    useJUnitPlatform{
+        includeTags "properties"
+    }
+}
+
+task owner(type: Test) {
+    useJUnitPlatform{
+        includeTags "owner"
     }
 }
